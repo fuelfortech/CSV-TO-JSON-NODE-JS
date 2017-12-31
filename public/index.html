@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body style="text-align:center">
+	<h1>CSV FILE TO JSON</h1>
+	
+        <form>
+            <input type="file" name="userfile" id="userfile" size="20" />
+            <br /><br />
+            <input type="button" id="upload" value="upload" />
+        </form>
+	
+	<pre id="json"></pre>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+	
+	 $(document).ready(function(){
+                $('#upload').click(function(){
+
+                    console.log('upload button clicked!')
+                    var fd = new FormData();    
+                    fd.append( 'userfile', $('#userfile')[0].files[0]);
+
+                    $.ajax({
+                      url: 'http://localhost:3000/upload',
+                      data: fd,
+                      processData: false,
+                      contentType: false,
+                      type: 'POST',
+                      success: function(data){
+                        $("#json").html(JSON.stringify(data, undefined, 2)); 
+                        
+
+                      }
+                    });
+                });
+        });
+	
+	</script>
+  
+</body>
+</html>
