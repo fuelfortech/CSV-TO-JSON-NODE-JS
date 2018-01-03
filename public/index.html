@@ -12,8 +12,9 @@
             <br /><br />
             <input type="button" id="upload" value="upload" />
         </form>
-	
+	<div id="download"></div>
 	<pre id="json"></pre>
+	
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript">
 	
@@ -32,6 +33,7 @@
                       type: 'POST',
                       success: function(data){
                         $("#json").html(JSON.stringify(data, undefined, 2)); 
+        $("#download").html("<a href='/download.json' download>Download JSON</a>"); 
                         
 
                       }
